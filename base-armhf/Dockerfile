@@ -27,7 +27,9 @@ ENV CARGO_TARGET_ARMV7_UNKNOWN_LINUX_GNUEABIHF_LINKER=arm-linux-gnueabihf-gcc \
     OPENSSL_INCLUDE_DIR=/openssl/include \
     OPENSSL_LIB_DIR=/openssl/lib \
     QEMU_LD_PREFIX=/usr/arm-linux-gnueabihf \
-RUST_TEST_THREADS=1
+    RUST_TEST_THREADS=1 \
+    PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabihf/pkgconfig/
 
 RUN dpkg --add-architecture armhf
 RUN apt-get update
+RUN echo "arm-linux-gnueabihf" >> /usr/lib/pkg-config.multiarch
